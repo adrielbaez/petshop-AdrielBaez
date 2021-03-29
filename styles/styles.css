@@ -1,0 +1,382 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /** 1 rem= 10px**/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+/*............fuentes.................*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+}
+p.text-aboutus{
+    font-size: 3.5rem;
+}
+p.copy{
+    font-size: 2.5rem;
+}
+h2{
+    font-size: 5rem;
+    font-weight: bold;
+}
+/* -------- code reutilizables --------- */
+.myContainer{
+    width: 95%;
+    margin: 0 auto;
+}
+.d-flex{
+    display: flex;
+}
+.flex-centrado{
+    justify-content: center;
+    align-items: center;
+}
+.flex-colum{
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-colum2{
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flex-end{
+    justify-content: flex-end;
+    align-items: center;
+}
+.flex-grow{
+    flex: 1;
+}
+.display-none{
+    display: none;
+}
+.display-block{
+    display: block;
+}
+/* colors */
+:root{
+    --indigo:#283593;
+    --yellow:#E7B61B;
+    --white:#F6F6F6;
+    --green:#0BC6C3;
+}
+/* -------- header ------- */
+nav{
+    background-color: var(--indigo);
+    /* height: 8rem; */
+}
+ul li > a, .mobile{
+    font-size: 2rem;
+    color: var(--white);
+}
+.hero-header, .hero-header-contact{
+    background-size: cover;
+    background-position: top right;
+    padding-bottom: 4rem;
+}
+.hero-header{
+    background-image: url('../assets/puppyandcat.jpg');
+    height: 100vh;
+
+}
+.hero-header-contact{
+    background-image: url('../assets/Schnauzer.jpg');
+    height: 60vh;
+}
+.carrusel1{
+    background-image: url('../assets/perrosJugando.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+@media (min-width: 768px) {
+    .hero-header{
+        display: flex;
+    }
+}
+img.puppies, img.mascotas{
+    margin-top: 2rem;
+    width: 40rem;
+}
+.card-header{
+    margin-top: 2rem;
+    padding: 0 2rem;
+    background-color: var(--white);
+    height: 80vw;
+    border-radius: 30px;
+}
+.card-header > h1{
+    color: var(--indigo);
+    font-weight: bold;
+    font-size: 7rem;
+}
+.card-header > p{
+    font-size: 2rem;
+}
+@media (min-width: 768px) {
+    .card-header{
+        width: 40vw;
+        height: 60vh;
+    }
+    img.puppies, img.mascotas{
+        margin-top: 2rem;
+        width: 55rem;
+    }
+    .myGrid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .myGrid3{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    .aboutUs{
+        display: flex;
+    }
+}
+/* -------------- */
+i{
+    padding: 1rem;
+    font-size: 4rem;
+}
+i.social-media{
+    color: black;
+}
+i.social-media:hover{
+    color: var(--white);
+    cursor: pointer;
+}
+i.social-media2{
+    color: var(--white);
+}
+i.social-media2:hover{
+    color: var(--yellow);
+    cursor: pointer;
+    box-shadow: 2px 2px 7px wheat;
+}
+i.arrow{
+    font-size: 1.8rem;
+}
+.servicios{
+    background-color: var(--yellow);
+    padding: 6rem 0rem;
+}
+img.logo{
+    width: 16rem;
+}
+img.card-ventajas{
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .grid-ventajas{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+}
+.section-contact{
+    height: 35rem;
+    background-image: url('../assets/miniature-schnauzer-1923470_1920.jpg');
+    background-size: cover;
+    background-position: center left;
+}
+.text-contact{
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+.text-contact > a {
+    color: var(--white);
+    background-color: var(--indigo);
+    padding: 1rem 2rem;
+}
+.footer-information{
+    padding: 2rem 0;
+}
+div.copyrigth{
+    padding: .5rem 0;
+    border: 1px solid black;
+    background-color: var(--yellow);
+}
+.footer-info{
+    padding: 2rem 0;
+}
+footer{
+    background-color: var(--indigo);
+}
+footer a{
+    color: var(--white);
+}
+footer a:hover{
+    text-decoration: underline var(--yellow);
+}
+/* ------------- form*/
+main.contact{
+    background-color: var(--yellow);
+    padding: 3rem 0;
+}
+.contenedor-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+form{
+    width: 80vw;
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 5px 100px 5px;
+}
+textarea{
+    width: 100%;
+    height: 12rem;
+}
+label{
+    font-size: 1.5rem;
+}
+input {
+    border: none;
+    border-bottom: 1px black solid;
+}
+fieldset{
+    border: none;
+}
+span.check{
+    font-size: 1.5rem !important;
+}
+button.btn-submit{
+    color: var(--white);
+    font-size: 2rem;
+    margin-top: 1rem;
+    border-radius: 20px;
+    background-color: #8de644;
+    border: none;
+    padding: 1rem 2rem;
+}
+button[disabled]{
+    background-color: rgba(255, 37, 37, 0.301);
+}
+button[disabled]:hover{
+    cursor: not-allowed;
+}
+button:hover{
+    cursor: pointer;
+}
+.btn-position{
+    justify-content: flex-end;
+}
+@media (min-width: 768px) {
+    form{
+        width: 40vw;
+    }
+}
+/* ----eventos form */
+.error{
+    border-bottom: #d50000;
+}
+.correcto{
+    border-bottom: #76ff03;
+}
+/* cards-container */
+.card{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    
+}
+
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 3rem;
+    padding: 4rem 0 !important;
+
+}
+.tittle-card{
+    height: 12vh;
+}
+.card-content p{
+    padding: 1rem 0;
+}
+div.descripcion {
+    text-align: justify;
+    height: 35vh;
+}
+p.text-descripcion{
+    font-size: 1.5rem;
+}
+.img-card{
+    width: 30rem;
+}
+h3.fw-bold{
+    font-size: 2rem;
+}
+.fw-bold{
+    font-weight: bold;
+}
+.boton{
+    font-size: 2rem;
+    color: var(--white);
+    background-color: var(--indigo);
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    display: inline-block;
+    transition: background-color .2s ease-in;
+}
+.boton:hover{
+    background-color: var(--yellow);
+}
+#btn-descripcion{
+    background-color: var(--green);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem 2rem;
+}
+.stock{
+    width: 100%;
+    background-color: var(--green);
+    text-align: center;
+    margin: 2rem 0;
+}
+.stockUltimos{
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+div.tipo{
+    font-size: 2rem;
+    width: 100%;
+}
+p.precio{
+    font-size: 2rem;
+}
+span.precio2{
+    text-decoration: 3px underline red;
+}
+/* carpusel */
+.descuento{
+    background-image: url('../assets/Descuentos.png');
+    background-size: cover;
+    background-position: center;
+    height: 18rem !important;
+}
+/* .spacing{
+    margin: 2rem 4rem;
+} */
+/* img.carousel-img{
+    width: 80rem !important;
+} */
+#shopHeader{
+    background-color: var(--indigo);
+}
+/* select------ */
+.select{
+    width: 25rem !important;
+}
+p.filtro-text{
+    margin-right: 2rem;
+}

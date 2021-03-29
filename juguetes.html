@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juguetes</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body id="juguetesPage">
+    <header>
+        <div>
+            <nav>
+                <div class="myContainer nav-wrapper">
+                  <a href="./index.html" class="brand-logo"><img class="logo" src="./assets/miLogo2.PNG" alt="logo"></a>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons mobile">menu</i></a>
+                  <ul class="right hide-on-med-and-down">
+                    <li><a href="./index.html">Inicio</a></li>
+                    <li><a href="./farmacia.html">Farmacia</a></li>
+                    <li><a class="yellow-text" href="#">Juguetes</a></li>
+                    <li><a href="./contacto.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </nav>
+              <ul class="sidenav" id="mobile-demo">
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="#">Farmacia</a></li>
+                <li><a href="./juguetes.html">Juguetes</a></li>
+                <li><a href="./contacto.html">Contáctenos</a></li>
+              </ul>
+        </div>
+        <div class="carousel carousel-slider center">
+            <div class="carousel-fixed-item center">
+              <a class="btn waves-effect white grey-text darken-text-2">button</a>
+            </div>
+            <div class="carousel-item red white-text" href="#one!">
+              <h2>First Panel</h2>
+              <p class="white-text">This is your first panel</p>
+            </div>
+            <div class="carousel-item amber white-text" href="#two!">
+              <h2>Second Panel</h2>
+              <p class="white-text">This is your second panel</p>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+              <h2>Third Panel</h2>
+              <p class="white-text">This is your third panel</p>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+              <h2>Fourth Panel</h2>
+              <p class="white-text">This is your fourth panel</p>
+            </div>
+          </div>
+    </header>
+    <main class="myContainer">
+        <h2>productos</h2>
+        <div class="select">
+        <p>Ordenar por Precio</p>
+        <select name="filtroPrecios" id="filtroPrecios">
+            <option value="all">Todos</option>
+            <option value="200">$200 ARS</option>
+            <option value="300">$300 ARS</option>
+            <option value="600">$600 ARS</option>
+            <option value="1000">$1000 ARS</option>
+        </select>
+      </div>
+        <div  id="cardFarmacia" class="cards-container">
+            
+        </div>
+    </main>
+    <footer>
+        <div class="footer-information myContainer myGrid3">
+            <div class="d-flex flex-colum">
+                <img class="logo" src="./assets/miLogo2.PNG">
+                    <i class="fab fa-facebook social-media2"></i>
+                    <i class="fab fa-instagram social-media2"></i>
+                    <i class="fab fa-whatsapp social-media2"></i>
+            </div>
+            <div class="d-flex flex-colum">
+                <h3 class="black-text">Acceso rapido</h3>
+                    <a href="./index.html">Inicio</a>
+                    <a href="#">Farmacia</a>
+                    <a href="./juguetes.html">Juguetes</a>
+                    <a href="./contacto.html">Contacto</a>
+            </div>
+            <div class="d-flex flex-colum2">
+                <h3 class="black-text center-align">Informacion de contacto</h3>
+                <p><i class="fas fa-map-marker-alt social-media2"></i>Rio de Janeiro 300 (Caballito)</p>
+                <p><i class="fas fa-phone-alt social-media2"></i> 18888888888</p>
+                <p><i class="fas fa-envelope social-media2"></i> info@franco.com</p>
+            </div>
+        </div>
+        <div class="copyrigth">
+            <h3 class="center-align">&copy;Todos los derechos reservados</h3>
+        </div>
+    </footer>
+    <script src="./js/main.js"></script>
+    <script src="https://kit.fontawesome.com/044fadda5a.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
