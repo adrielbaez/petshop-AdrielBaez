@@ -78,7 +78,7 @@ btnSend.addEventListener('click', (event)=>{
         icon: 'success',
         title: `Tu mensaje fue enviado con exito, ${nameInput.value}!`,
         showConfirmButton: true,
-        timer: 2500
+        timer: 4000
       })
       .then(()=> {
           window.location.href = '/'
@@ -146,9 +146,11 @@ function mostrarArticulos(articulos){
             if (precioProducto == '200') {
                 let nuevoPrecioFiltrado =  precioFiltrado.sort((a , b) =>  a.precio - b.precio)
             crearCards(nuevoPrecioFiltrado)
+            collapseCall()
         } else if (precioProducto == '1500') {
             let nuevoPrecioFiltrado2 =  precioFiltrado.sort((a , b) =>  b.precio - a.precio)
             crearCards(nuevoPrecioFiltrado2)
+            collapseCall()
             
             }
         }
@@ -164,10 +166,6 @@ function mostrarArticulos(articulos){
     }
     // filtros termina aqui
 
-
-
-
-
     function crearCards(arrayProductos){
         clearCards()
         arrayProductos.forEach( producto => {
@@ -181,15 +179,17 @@ function mostrarArticulos(articulos){
                         <div class="tittle-card d-flex flex-centrado">
                         <h3 class="center-align fw-bold">${producto.nombre}</h3>
                         </div>
-                        <div class="descripcion">
-                        <p class="text-descripcion">${producto.descripcion}</p>
-                        </div>
+                        <div>
+                            <button type="button" class="collapsible">Descripcion</button>
+                            <div class="content">
+                                <p>${producto.descripcion}</p>
+                            </div>
+                        </div>    
                         <div class="tipo left-align">
-                            <p >Tipo: ${producto.tipo}</p>
                             <p class="precio fw-bold">Precio: $<span class="precio2">${producto.precio} ARS</span></p>
                         </div>
                         <div class="${producto.stock < 5 ? 'stockUltimos'  : 'stock'}">
-                            <p class="white-text"> ${producto.stock < 5 ?  'Ultimas '+ producto.stock +' unidades' : 'Stock: '+ producto.stock}</p>
+                            <p > ${producto.stock < 5 ?  'Ultimas unidades!' : 'Stock: '+ producto.stock}</p>
                         </div>
                         <a class="boton" id="${producto._id}" href="#">Agregar al carrito</a>
                     </div>
@@ -206,6 +206,23 @@ function callCrearCards(){
     if (juguetesPage) {
         crearCards(juguetes)
     }
+}
+collapseCall()
+function collapseCall(){
+    var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
 }
 }
 function clearCards() {
