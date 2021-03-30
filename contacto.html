@@ -45,17 +45,17 @@
                 <form id="form">
                     <fieldset>
                         <legend>Datos del Dueño</legend>
-                        <label for="nombre" >Nombre</label>
+                        <label for="nombre" >Nombre<span class="red-text">*</span></label>
                         <input type="text" id="nameInput" required placeholder="Juan">
-                        <label for="apellido">Apellido</label>
+                        <label for="apellido">Apellido<span class="red-text">*</span></label>
                         <input type="text" id="apellido" placeholder="Perez" required>
-                        <label for="email">Email</label>
+                        <label for="email">Email<span class="red-text">*</span></label>
                         <input type="email" id="email" placeholder="juanPerez@tudominio.com" required>
                         <label for="telefono">Telefono</label>
                         <input type="number" id="telefono" placeholder="12345789">
                     </fieldset>
                     <fieldset id="checkBox">
-                        <legend>Mascotas</legend>
+                        <legend>Mascotas<span class="red-text">*</span></legend>
                         <div class="center-align myGrid3">
                             <p>
                                 <label>
@@ -78,7 +78,7 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Mensaje</legend>
+                        <legend>Mensaje<span class="red-text">*</span></legend>
                         <textarea name="mensaje" id="mensaje" placeholder="Dejanos tu mensaje"></textarea>
                     </fieldset>
                     <div class="d-flex btn-position">

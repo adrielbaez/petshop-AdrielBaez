@@ -32,45 +32,46 @@ if (homePage) {
 }
 // fetxh
 
-if(contactPage){
-    var check = [];
-    loadEventListeners()
-    function loadEventListeners(){
-        nameInput.addEventListener('blur', validationForm);
-        lastNameInput.addEventListener('blur', validationForm);
-        emailInput.addEventListener('blur', validationForm);
-        messageInput.addEventListener('blur', validationForm);
+if (contactPage) {
+    
+var check = [];
+loadEventListeners()
+function loadEventListeners(){
+    nameInput.addEventListener('blur', validationForm);
+    lastNameInput.addEventListener('blur', validationForm);
+    emailInput.addEventListener('blur', validationForm);
+    messageInput.addEventListener('blur', validationForm);
 
-        checkBoxes.forEach(checkBox => {
-            checkBox.addEventListener('change',() => {
-                check = [];
-                checkBoxes.forEach(item =>{
-                    if (item.checked) {
-                        check.push(item)
-                    }
-                })
-                // if (check.length > 0) {
-                //     btnSend.removeAttribute('disabled');
-                // } else {
-                //     btnSend.setAttribute('disabled', '');
-                // }
+    checkBoxes.forEach(checkBox => {
+        checkBox.addEventListener('change',() => {
+            check = [];
+            checkBoxes.forEach(item =>{
+                if (item.checked) {
+                    check.push(item)
+                }
             })
-        });
-    }
-    function validationForm(e){
-        let field = e.target;
-        if(field.value.length > 0 ) {
-            field.style.borderBottomColor = '#76ff03'
-       } else {
-            field.style.borderBottomColor = 'red';
-       }
+            if (check.length > 0 && nameInput.value !== '' && lastNameInput.value !== '' && emailInput.value !== '' && messageInput.value !== '') {
+                btnSend.removeAttribute('disabled');
+            } else {
+                btnSend.setAttribute('disabled', '');
+            }
+        })
+    });
+}
+function validationForm(e){
+    let field = e.target;
+    if(field.value.length > 0 ) {
+        field.style.borderBottomColor = '#76ff03'
+   } else {
+        field.style.borderBottomColor = 'red';
+   }
 
     if (nameInput.value !== '' && lastNameInput.value !== '' && emailInput.value !== '' && messageInput.value !== '' ) {
         btnSend.removeAttribute('disabled');
     } else {
         btnSend.setAttribute('disabled', '');
     }
-    }
+}
 btnSend.addEventListener('click', (event)=>{
     event.preventDefault()
     Swal.fire({
@@ -143,11 +144,11 @@ function mostrarArticulos(articulos){
         // filtro mi array de productos
         let precioFiltrado = arrayProductos.filter(filtrarPrecio)
         if (precioFiltrado.length > 0) {
-            if (precioProducto == '200') {
+            if (precioProducto == '0') {
                 let nuevoPrecioFiltrado =  precioFiltrado.sort((a , b) =>  a.precio - b.precio)
             crearCards(nuevoPrecioFiltrado)
             collapseCall()
-        } else if (precioProducto == '1500') {
+        } else if (precioProducto == '10000') {
             let nuevoPrecioFiltrado2 =  precioFiltrado.sort((a , b) =>  b.precio - a.precio)
             crearCards(nuevoPrecioFiltrado2)
             collapseCall()
@@ -158,9 +159,9 @@ function mostrarArticulos(articulos){
     function filtrarPrecio(producto){
         if (precioProducto == 'all') {
             callCrearCards()
-        } else if (precioProducto == '200') {
+        } else if (precioProducto == '0') {
             return producto.precio >= precioProducto
-        }else if (precioProducto == '1500') {
+        }else if (precioProducto == '10000') {
             return producto.precio <= precioProducto
         }
     }
@@ -185,11 +186,11 @@ function mostrarArticulos(articulos){
                                 <p>${producto.descripcion}</p>
                             </div>
                         </div>    
-                        <div class="tipo left-align">
-                            <p class="precio fw-bold">Precio: $<span class="precio2">${producto.precio} ARS</span></p>
-                        </div>
                         <div class="${producto.stock < 5 ? 'stockUltimos'  : 'stock'}">
                             <p > ${producto.stock < 5 ?  'Ultimas unidades!' : 'Stock: '+ producto.stock}</p>
+                        </div>
+                        <div class="tipo left-align">
+                            <p class="precio fw-bold">Precio: $<span class="precio2">${producto.precio} ARS</span></p>
                         </div>
                         <a class="boton" id="${producto._id}" href="#">Agregar al carrito</a>
                     </div>
