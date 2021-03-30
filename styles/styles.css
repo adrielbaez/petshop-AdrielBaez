@@ -401,10 +401,15 @@ span.precio2{
     background-color: var(--indigo);
 }
 /* select------ */
+option{
+    background-color: grey !important;
+    font-size: 3rem;
+}
 .select{
     width: 25rem !important;
 }
 p.filtro-text{
+    font-size: 3rem;
     margin-right: 2rem;
 }
 /* -----------COLLAPSIBLE */
