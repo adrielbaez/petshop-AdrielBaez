@@ -250,6 +250,7 @@ textarea{
     height: 12rem;
 }
 label{
+    background-color: var(--white)  !important;
     font-size: 1.5rem;
 }
 input {
@@ -438,4 +439,5 @@ p.filtro-text{
     overflow: hidden;
     background-color: #f1f1f1;
   }
+
   
