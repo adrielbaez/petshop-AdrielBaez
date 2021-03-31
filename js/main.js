@@ -33,7 +33,6 @@ if (homePage) {
 // fetxh
 
 if (contactPage) {
-    
 var check = [];
 loadEventListeners()
 function loadEventListeners(){
@@ -58,12 +57,13 @@ function loadEventListeners(){
         })
     });
 }
-function validationForm(e){
-    let field = e.target;
+function validationForm(event){
+    let field = event.target;
     if(field.value.length > 0 ) {
         field.style.borderBottomColor = '#76ff03'
    } else {
         field.style.borderBottomColor = 'red';
+        mensajeCamposObligatorios()
    }
 
     if (nameInput.value !== '' && lastNameInput.value !== '' && emailInput.value !== '' && messageInput.value !== '' ) {
@@ -72,14 +72,24 @@ function validationForm(e){
         btnSend.setAttribute('disabled', '');
     }
 }
+function mensajeCamposObligatorios(){
+    const mostrarMensaje = document.getElementById('mostrarMensaje')
+    const mensajeError = document.createElement('p');
+    mensajeError.classList.add('mensaje-error')
+     mensajeError.textContent = 'Faltan campos por completar';
+     mostrarMensaje.appendChild(mensajeError)
+
+     setTimeout(() =>  {
+        mensajeError.remove();
+   }, 3000);
+}
 btnSend.addEventListener('click', (event)=>{
     event.preventDefault()
     Swal.fire({
-        // position: 'top-center',
         icon: 'success',
-        title: `Tu mensaje fue enviado con exito, ${nameInput.value}!`,
+        title: `¡Muchas gracias por escribirnos ${nameInput.value}, te responderemos a la brevedad!`,
         showConfirmButton: true,
-        timer: 4000
+        timer: 7000
       })
       .then(()=> {
           window.location.href = '/'
@@ -89,9 +99,6 @@ btnSend.addEventListener('click', (event)=>{
 }
 
 if (farmaciaPage || juguetesPage) {
-
-
-
 
 fetchArticulos()
 async function fetchArticulos(){
@@ -110,71 +117,82 @@ function mostrarArticulos(articulos){
         juguetes: [],
         farmacia: [],
         precioProducto: '',
-        otroPrecioProducto: '',
+        precioMinimoFarmacia: '',
+        precioMaximoFarmacia: '',
+        todosPrecios: 'all',
     }
-    var {juguetes, farmacia, precioProducto, otroPrecioProducto} = catalogo;
+    var {juguetes, farmacia, precioProducto, precioMaximoFarmacia, precioMinimoFarmacia, todosPrecios} = catalogo;
 
     // filtro los articulos por tipo 
     juguetes = articulos.filter( articulo => articulo.tipo === 'Juguete')
     farmacia = articulos.filter( articulo => articulo.tipo === 'Medicamento')
+    // precio minimo y precio maximo
+   if (farmaciaPage) {
+    colocarValueOption(farmacia)
+   }
+   if (juguetesPage) {
+       colocarValueOption(juguetes)
+   }
+   function colocarValueOption(categoriaProducto){
+    const optionMayor = document.getElementById('optionMayor');
+    const optionMenor = document.getElementById('optionMenor');
 
-    // boton
-    cardFarmacia.addEventListener('click', agregarCarrito)
+    precioMaximoFarmacia = categoriaProducto.sort((a,b) => b.precio - a.precio)[0].precio 
+    precioMinimoFarmacia = categoriaProducto.sort((a,b) => a.precio - b.precio)[0].precio 
 
-    function agregarCarrito(e){
-        e.preventDefault()
-        if (e.target.classList.contains('boton')) {
-            
-            console.log(e.target.parentElement);
+
+    optionMayor.value = precioMaximoFarmacia
+    optionMenor.value = precioMinimoFarmacia
+   }
+        
+   // filtros inicia aqui
+   const filtroPrecios = document.getElementById('filtroPrecios');
+   filtroPrecios.addEventListener('change', (e) => {
+       precioProducto = e.target.value;
+       console.log(precioProducto);
+       if (farmaciaPage) {
+           comparaPrecios(farmacia)
+       } 
+       if (juguetesPage) {
+           comparaPrecios(juguetes)
+       }
+   })
+    // // necesito comparar ese precio, llamo arrayProductos a juguetes y farmacia
+   function comparaPrecios(arrayProductos){
+    // filtro mi array de productos
+    let precioFiltrado = arrayProductos.filter(filtrarPrecio);
+    // una vez filtrados, comparo para ordenarlos y mostrarlo en el DOM
+
+    if (precioFiltrado.length > 0) {
+        if (precioProducto == precioMinimoFarmacia) {
+            let nuevoPrecioFiltrado =  precioFiltrado.sort((a , b) =>  a.precio - b.precio)
+        crearCards(nuevoPrecioFiltrado)
+        collapseCall()
+    } else if (precioProducto == precioMaximoFarmacia) {
+        let nuevoPrecioFiltrado2 =  precioFiltrado.sort((a , b) =>  b.precio - a.precio)
+        crearCards(nuevoPrecioFiltrado2)
+        collapseCall()
         }
     }
-    // filtros inicia aqui
-    const filtroPrecios = document.getElementById('filtroPrecios');
-    filtroPrecios.addEventListener('change', (e) => {
-        precioProducto = e.target.value;
-        if (farmaciaPage) {
-            comparaPrecios(farmacia)
-        } 
-        if (juguetesPage) {
-            comparaPrecios(juguetes)
-        }
-    })
-    // necesito comparar ese precio
-    function comparaPrecios(arrayProductos){
-        // filtro mi array de productos
-        let precioFiltrado = arrayProductos.filter(filtrarPrecio)
-        if (precioFiltrado.length > 0) {
-            if (precioProducto == '0') {
-                let nuevoPrecioFiltrado =  precioFiltrado.sort((a , b) =>  a.precio - b.precio)
-            crearCards(nuevoPrecioFiltrado)
-            collapseCall()
-        } else if (precioProducto == '10000') {
-            let nuevoPrecioFiltrado2 =  precioFiltrado.sort((a , b) =>  b.precio - a.precio)
-            crearCards(nuevoPrecioFiltrado2)
-            collapseCall()
-            
-            }
-        }
-    }
+}
+    // esta funcion es callBack de filter
+
     function filtrarPrecio(producto){
-        if (precioProducto == 'all') {
+        if (precioProducto == todosPrecios) {
             callCrearCards()
-        } else if (precioProducto == '0') {
+        } else if (precioProducto == precioMinimoFarmacia) {
             return producto.precio >= precioProducto
-        }else if (precioProducto == '10000') {
+        }else if (precioProducto == precioMaximoFarmacia) {
             return producto.precio <= precioProducto
         }
-    }
-    // filtros termina aqui
+}
 
     function crearCards(arrayProductos){
         clearCards()
         arrayProductos.forEach( producto => {
             const card = document.createElement('div')
             card.classList.add('card', 'd-flex', 'flex-colum')
-            card.innerHTML +=` 
-            
-            
+            card.innerHTML +=`    
                     <img class="img-card" src=${producto.imagen}/>
                     <div class="card-content d-flex  flex-colum flex-grow">
                         <div class="tittle-card d-flex flex-centrado">
@@ -211,19 +229,19 @@ function callCrearCards(){
 collapseCall()
 function collapseCall(){
     var coll = document.getElementsByClassName("collapsible");
-var i;
+    var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
     }
-  });
-}
 }
 }
 function clearCards() {

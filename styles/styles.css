@@ -19,6 +19,7 @@ p.text-aboutus{
 }
 p.copy{
     font-size: 2.5rem;
+    text-align: justify;
 }
 h2{
     font-size: 5rem;
@@ -165,6 +166,9 @@ i{
 i.social-media{
     color: black;
 }
+i.social-media3{
+    color: black;
+}
 i.social-media:hover{
     color: var(--white);
     cursor: pointer;
@@ -297,6 +301,11 @@ button:hover{
     }
 }
 /* ----eventos form */
+.mensaje-error{
+    border: 1px red solid;
+    color: red;
+    text-align: center;
+}
 .error{
     border-bottom: #d50000;
 }
