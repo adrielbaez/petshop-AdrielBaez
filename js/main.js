@@ -193,7 +193,7 @@ function mostrarArticulos(articulos){
             const card = document.createElement('div')
             card.classList.add('card', 'd-flex', 'flex-colum')
             card.innerHTML +=`    
-                    <img class="img-card" src=${producto.imagen}/>
+                    <img class="img-card" src="${producto.imagen}"/>
                     <div class="card-content d-flex  flex-colum flex-grow">
                         <div class="tittle-card d-flex flex-centrado">
                         <h3 class="center-align fw-bold">${producto.nombre}</h3>

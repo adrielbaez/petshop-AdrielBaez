@@ -250,6 +250,9 @@ main.contact{
     align-items: center;
     padding: 2rem 0;
 }
+footer div > h3{
+    color: white !important;
+}
 form{
     width: 80vw;
     background-color: var(--white);
